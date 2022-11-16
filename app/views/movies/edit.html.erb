@@ -4,9 +4,7 @@
   <p style="color: red;"><%= message %></p>
 <% end %>
 
-<form action="<%= movie_path(@the_movie) %>" method="post">
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-  
+<%= form_with(url: movie_path(@the_movie)) do %>
   <input name="_method" value="patch" type="hidden">
 
   <div>
@@ -28,4 +26,4 @@
   <button>
     Update movie
   </button>
-</form>
+<% end %>
