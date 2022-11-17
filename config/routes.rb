@@ -21,4 +21,23 @@ Rails.application.routes.draw do
   delete "/movies/:id" => "movies#destroy" 
 
   #------------------------------
+  #ROUTES FOR DIRECTOR
+
+  #CREATE
+  post "/directors" => "directors#create", as: :directors
+  get "/directors/new" => "directors#new", as: :new_director
+
+
+  #READ
+  get "/directors" => "directors#index"
+  get "/directors/:id" => "directors#show", as: :director
+
+  #UPDATE
+  patch "/directors/:id" => "directors#update"
+  get "/directors/:id/edit" => "directors#edit", as: :edit_director
+
+  #DELETE
+  delete "/directors/:id" => "directors#destroy"
+
+
 end
