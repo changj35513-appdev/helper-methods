@@ -37,7 +37,7 @@ class DirectorsController < ApplicationController
       @director.update(director_attributes)
       redirect_to(director_url(@director), notice: "Director updated successfully.")
     else
-      render "edit"
+      redirect_to(director_url(@director), alert: "Director did not update correctly.")
     end
 
 
