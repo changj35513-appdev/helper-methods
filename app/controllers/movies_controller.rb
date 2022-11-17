@@ -24,12 +24,13 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @the_movie = Movie.new
-    @the_movie.title = params.fetch("title")
-    @the_movie.description = params.fetch("description")
+    # @movie = params.require(:movie).permit(:title, :description)
+    @movie = Movie.new
+    @movie.title = params.fetch(:movie).fetch(:title)
+    @movie.description = params.fetch(:movie).fetch(:description)
 
-    if @the_movie.valid?
-      @the_movie.save
+    if @movie.valid?
+      @movie.save
       redirect_to(movies_url, notice: "Movie created successfully." )
     else
       render "new"
@@ -37,29 +38,29 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @the_movie = Movie.find(params.fetch(:id))
+    @movie = Movie.find(params.fetch(:id))
   end
 
   def update
     
-    the_movie = Movie.find(params.fetch(:id))
+    movie = Movie.find(params.fetch(:id))
 
-    the_movie.title = params.fetch("title")
-    the_movie.description = params.fetch("description")
+    movie.title = params.fetch("title")
+    movie.description = params.fetch("description")
 
-    if the_movie.valid?
-      the_movie.save
-      redirect_to(movie_url(the_movie), notice: "Movie updated successfully.")
+    if movie.valid?
+      movie.save
+      redirect_to(movie_url(movie), notice: "Movie updated successfully.")
     else
-      redirect_to(movie_url(the_movie), alert: "Movie failed to update successfully.")
+      redirect_to(movie_url(movie), alert: "Movie failed to update successfully.")
     end
   end
 
   def destroy
 
-    the_movie = Movie.find(params.fetch(:id))
+    movie = Movie.find(params.fetch(:id))
 
-    the_movie.destroy
+    movie.destroy
 
     redirect_to(movies_url, notice: "Movie deleted successfully." )
   end
